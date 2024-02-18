@@ -1,0 +1,62 @@
+.background-radial-gradient {
+  background-color: hsl(218, 41%, 15%);
+  background-image: radial-gradient(650px circle at 0% 0%,
+      hsl(219, 97%, 48%) 15%,
+      hsl(218, 96%, 50%) 35%,
+      hsl(219, 69%, 23%) 75%,
+      hsl(218, 88%, 25%) 80%,
+      transparent 100%),
+    radial-gradient(1250px circle at 100% 100%,
+      hsl(204, 90%, 65%) 15%,
+      hsl(205, 92%, 58%) 35%,
+      hsl(205, 87%, 49%) 75%,
+      hsl(204, 93%, 53%) 80%,
+      transparent 100%);
+}
+
+
+
+
+.curssor-cusotm:hover{
+  cursor: pointer;
+}
+
+#radius-shape-1 {
+  height: 220px;
+  width: 220px;
+  top: -60px;
+  left: -130px;
+  background: radial-gradient(#44006b, #ad1fff);
+  overflow: hidden;
+}
+
+#radius-shape-2 {
+  
+  bottom: -60px;
+  right: -110px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(#44006b, #ad1fff);
+  overflow: hidden;
+}
+
+#radius-shape-1,
+#radius-shape-2 {
+  border-radius: 50%; /* Make the elements spherical */
+  background: radial-gradient(circle at 30% 30%, 
+                #1776c9 0%, 
+                #0a2baf 30%, 
+                #0b50c0 70%, 
+                #a30ec1 100%); /* Radial gradient for 3D effect */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Add shadow for depth effect */
+}
+
+
+.bg-glass {
+  background-color: hsla(0, 0%, 100%, 0.9) !important;
+  backdrop-filter: saturate(200%) blur(25px);
+}
+
+body{
+  height: 100vh;
+}
