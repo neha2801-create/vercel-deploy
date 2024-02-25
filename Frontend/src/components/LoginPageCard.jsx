@@ -38,7 +38,10 @@ const LoginPageCard = ({
                 sx={{
                     backdropFilter: "blur(10px)",
                     backgroundImage: `url(${bgImage})`,
-                    backgroundSize: "20px",
+                    // backgroundSize: "20px",
+                    backgroundPosition: "center",
+                    backgroundSize: "120%",
+                    backgroundPositionX: "200px",
                 }}
                 bgcolor={bgcolor}
                 border={border}

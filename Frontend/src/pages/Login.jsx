@@ -11,7 +11,7 @@ import {
     Button,
     FilledInput,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import LoginPageCard from "../components/LoginPageCard";
 import LogoOrange from "../assets/logo_orange.svg";
 import InDevelopmentTypo from "../assets/in_development_typo.png";
@@ -19,9 +19,10 @@ import ContentPasteIcon from "@mui/icons-material/ContentPaste";
 import Developers from "../components/Developer";
 import Developer from "../components/Developer";
 import Tag from "../components/Tag";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import OrangeBlobBG from "../assets/bg-blob.svg";
 import GridElement from "../assets/plus-grid-element.png";
+import Notes3D from "../assets/notes-3d.png";
 import zIndex from "@mui/material/styles/zIndex";
 
 import FilledTextFieldPassword from "../components/FilledTextFieldPassword";
@@ -31,7 +32,24 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
+import LoginForm from "../components/LoginForm";
+import SignUpForm from "../components/SignUpForm";
+import TentativeFeaturesCard from "../components/TentativeFeaturesCard";
+
 const Login = () => {
+    const [showSignUpFormView, setShowSignUpFormView] = useState(false);
+
+    function handleFormView() {
+        if (showSignUpFormView) {
+            // setFormView();
+            setShowSignUpFormView(!showSignUpFormView);
+            console.log(showSignUpFormView);
+        } else {
+            setShowSignUpFormView(!showSignUpFormView);
+            console.log(showSignUpFormView);
+        }
+    }
+
     return (
         <>
             <Stack
@@ -76,58 +94,8 @@ const Login = () => {
                     </LoginPageCard>
 
                     {/* ----FEATURES CARD---- */}
-                    <LoginPageCard
-                        borderRadius={"50px 0px 50px 50px"}
-                        // width={"calc(1050px / 3)"}
-                        height={350}
-                    >
-                        <Typography
-                            variant="h6"
-                            fontWeight={600}
-                            borderLeft={"0px"}
-                            borderRight={"0px"}
-                        >
-                            Tentative features
-                        </Typography>
+                    <TentativeFeaturesCard />
 
-                        <Stack
-                            borderLeft={"0px"}
-                            borderRight={"0px"}
-                            direction={"row"}
-                            gap={1}
-                            flexWrap={"wrap"}
-                        >
-                            <Tag text="Create notes" bgcolor={"#F5F5F5"} />
-                            <Tag text="Canvas layout" bgcolor={"#D9D9D9"} />
-                            <Tag
-                                text="Organize notes into categories"
-                                bgcolor={"#D9D9D9"}
-                            />
-                            <Tag
-                                text="Notes customization"
-                                bgcolor={"#F5F5F5"}
-                            />
-                            <Tag text="Attach files" bgcolor={"#F5F5F5"} />
-                            <Tag text="Command bar" bgcolor={"#FF8246"} />
-                            <Tag text="Note pinning" bgcolor={"#D9D9D9"} />
-                            <Tag
-                                text="Keyboard shortcuts"
-                                bgcolor={"#F5F5F5"}
-                            />
-                            <Tag text="Collab session" bgcolor={"#FF8246"} />
-                            <Tag
-                                text="Chat with collaborators"
-                                bgcolor={"#F5F5F5"}
-                            />
-                            <Tag text="Export notes" bgcolor={"#D9D9D9"} />
-                            <Tag text="Search notes" bgcolor={"#F5F5F5"} />
-                            <Tag text="Markdown" bgcolor={"#FF8246"} />
-                            <Tag
-                                text="...and we are thinking of more."
-                                color="grey"
-                            />
-                        </Stack>
-                    </LoginPageCard>
                     {/* ----LOGIN CARD---- */}
                     <LoginPageCard
                         borderRadius={"50px 50px 0px 50px"}
@@ -135,47 +103,23 @@ const Login = () => {
                         // bgcolor="#FF5300"
                         // border={1}
                     >
-                        {/* LOGIN FORM */}
-                        <Typography
-                            variant="h6"
-                            fontWeight={600}
-                            borderLeft={"0px"}
-                            borderRight={"0px"}
-                        >
-                            Log into your canvas
-                        </Typography>
-                        <form
-                            id="loginForm"
-                            height={"100%"}
-                            style={{ flex: 1 }}
-                        >
-                            <Stack
-                                height={"100%"}
-                                alignContent={"space-between"}
-                                justifyContent={"space-between"}
-                            >
-                                <Stack gap={2}>
-                                    <FilledTextField
-                                        placeholder="Email"
-                                        label="Email"
-                                        type="email"
-                                    />
-                                    <FilledTextFieldPassword
-                                        placeholder={"Password"}
-                                        label={"Password"}
-                                        type="password"
-                                    />
-                                    <Stack
-                                        direction={"row"}
-                                        alignItems={"center"}
-                                        justifyContent={"space-between"}
-                                    >
-                                        <RoundedButton>Login</RoundedButton>
-                                        <a href="">Trouble signing in? </a>
+                        <Stack justifyContent={"space-between"} height={"100%"}>
+                            <AnimatePresence>
+                                {showSignUpFormView ? (
+                                    <SignUpForm />
+                                ) : (
+                                    <LoginForm />
+                                )}
+                            </AnimatePresence>
+                            {showSignUpFormView ? (
+                                <a href="#" onClick={handleFormView}>
+                                    <Stack direction={"row"}>
+                                        <ChevronLeftIcon />
+                                        Already have an account? Login
                                     </Stack>
-                                </Stack>
-
-                                <a href="#">
+                                </a>
+                            ) : (
+                                <a href="#" onClick={handleFormView}>
                                     <Stack
                                         direction="row"
                                         justifyContent={"right"}
@@ -184,65 +128,8 @@ const Login = () => {
                                         <ChevronRightIcon />
                                     </Stack>
                                 </a>
-                            </Stack>
-                        </form>
-                        {/* SIGN UP FORM */}
-                        {/* <Typography
-                            variant="h6"
-                            fontWeight={600}
-                            borderLeft={"0px"}
-                            borderRight={"0px"}
-                        >
-                            Sign up for a new account
-                        </Typography>
-                        <form
-                            id="loginForm"
-                            height={"100%"}
-                            style={{ flex: 1 }}
-                        >
-                            <Stack
-                                height={"100%"}
-                                alignContent={"space-between"}
-                                justifyContent={"space-between"}
-                            >
-                                <Stack gap={2}>
-                                    <FilledTextField
-                                        placeholder="Hello!"
-                                        label="Full name"
-                                        type="text"
-                                    />
-                                    <FilledTextField
-                                        placeholder="someone@somewhere.com"
-                                        label="Your email"
-                                        type="email"
-                                    />
-                                    <FilledTextFieldPassword
-                                        placeholder={"AaBbCc@$%#000"}
-                                        label={"Set password"}
-                                        type="password"
-                                    />
-
-                                    <Stack
-                                        direction={"row"}
-                                        alignItems={"center"}
-                                        justifyContent={"right"}
-                                    >
-                                        <RoundedButton>
-                                            Next{" "}
-                                            <ArrowForwardIcon
-                                                sx={{ marginLeft: 1 }}
-                                            />{" "}
-                                        </RoundedButton>
-                                    </Stack>
-                                </Stack>
-                                <a href="#">
-                                    <Stack direction={"row"}>
-                                        <ChevronLeftIcon />
-                                        Already have an account? Login
-                                    </Stack>
-                                </a>
-                            </Stack>
-                        </form> */}
+                            )}
+                        </Stack>
                     </LoginPageCard>
                 </Stack>
                 {/* ----TOP ROW ENDS---- */}
@@ -256,7 +143,7 @@ const Login = () => {
                         padding={3.5}
                         flex={2}
                         height={350}
-                        bgImage={GridElement}
+                        bgImage={Notes3D}
                     >
                         <Typography
                             variant="h6"
