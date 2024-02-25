@@ -1,10 +1,12 @@
 import { TextField } from "@mui/material";
 import React from "react";
 
-const FilledTextField = ({ placeholder, label, type = "text", inputRef }) => {
+
+const FilledTextField = ({ placeholder, label, type = "text", inputRef, helperText }) => {
     return (
         <TextField
             // ref={ref}
+            helperText={helperText}
             inputRef={inputRef}
             variant="filled"
             type={type}
