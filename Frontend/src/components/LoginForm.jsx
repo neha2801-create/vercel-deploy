@@ -1,5 +1,5 @@
 import { Stack, Typography } from "@mui/material";
-import React from "react";
+import React, { useRef } from "react";
 import FilledTextField from "./FilledTextField";
 import FilledTextFieldPassword from "./FilledTextFieldPassword";
 import RoundedButton from "./RoundedButton";
@@ -7,6 +7,14 @@ import RoundedButton from "./RoundedButton";
 import { motion } from "framer-motion";
 
 const LoginForm = () => {
+    const loginEmailRef = useRef(null);
+    const loginPasswordRef = useRef(null);
+
+    function handleLogin() {
+        console.log(loginEmailRef.current.value);
+        console.log(loginPasswordRef.current.value);
+    }
+
     return (
         <motion.div
             initial={{ x: -200, opacity: 0 }}
@@ -42,11 +50,13 @@ const LoginForm = () => {
                 >
                     <Stack gap={2}>
                         <FilledTextField
+                            inputRef={loginEmailRef}
                             placeholder="someone@somewhere.com"
                             label="Email"
                             type="email"
                         />
                         <FilledTextFieldPassword
+                            inputRef={loginPasswordRef}
                             placeholder={"Password"}
                             label={"Password"}
                             type="password"
@@ -56,17 +66,12 @@ const LoginForm = () => {
                             alignItems={"center"}
                             justifyContent={"space-between"}
                         >
-                            <RoundedButton>Login</RoundedButton>
+                            <RoundedButton onClick={handleLogin}>
+                                Login
+                            </RoundedButton>
                             <a href="">Trouble signing in? </a>
                         </Stack>
                     </Stack>
-
-                    {/* <a href="#">
-                        <Stack direction="row" justifyContent={"right"}>
-                            Or create a new account
-                            <ChevronRightIcon />
-                        </Stack>
-                    </a> */}
                 </Stack>
             </form>
         </motion.div>

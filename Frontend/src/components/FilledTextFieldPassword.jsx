@@ -3,7 +3,12 @@ import React, { useRef, useState } from "react";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 
-const FilledTextFieldPassword = ({ placeholder, label, type = "text" }) => {
+const FilledTextFieldPassword = ({
+    placeholder,
+    label,
+    type = "text",
+    inputRef,
+}) => {
     const [showPassword, setShowPassword] = useState(false);
 
     const handleTogglePasswordVisibility = () => {
@@ -12,6 +17,7 @@ const FilledTextFieldPassword = ({ placeholder, label, type = "text" }) => {
 
     return (
         <TextField
+            inputRef={inputRef}
             variant="filled"
             type={showPassword ? "text" : "password"}
             placeholder={placeholder}

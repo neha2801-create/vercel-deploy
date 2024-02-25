@@ -1,9 +1,15 @@
 import { Button } from "@mui/material";
 import React from "react";
 
-const RoundedButton = ({ bgcolor = "#000", color = "#fff", children }) => {
+const RoundedButton = ({
+    bgcolor = "#000",
+    color = "#fff",
+    onClick,
+    children,
+}) => {
     return (
         <Button
+            onClick={onClick}
             sx={{
                 bgcolor: bgcolor,
                 color: color,
