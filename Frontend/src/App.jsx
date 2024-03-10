@@ -9,6 +9,7 @@ import NoteFound from "./pages/NotFound";
 import { createTheme } from "@mui/material";
 import { ThemeProvider } from "@emotion/react";
 import SignUpStepTwo from "./pages/SignUpStepTwo";
+import CanvasUI from "./pages/CanvasUI";
 
 function App() {
     const theme = createTheme({
@@ -20,7 +21,7 @@ function App() {
         <ThemeProvider theme={theme}>
             {/* <Login /> */}
             {/* <Canvas /> */}
-            <SignUpStepTwo />
+            <CanvasUI/>
         </ThemeProvider>
         // <Router>
         //       <Switch>
