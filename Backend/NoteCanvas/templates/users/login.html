@@ -11,8 +11,8 @@
     {% endfor %}
     <form action="" method="POST">
         {% csrf_token %}
-        Username or Email: <input type="text" name="username">
-        password: <input type="password" name="password">
+        Username or Email: <input type="text" name="username" required>
+        password: <input type="password" name="password" required>
         <input type="submit"/>
     </form>
     <a href="{% url 'register' %}"> No Account? Register here </a>

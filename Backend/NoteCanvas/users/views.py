@@ -7,9 +7,14 @@ from django.contrib.auth import authenticate, login, logout
 # Create your views here.
 def index(request):
     context = {}
-    return render(request, 'users/index.html', context)
+    if request.user.is_authenticated:
+        return render(request, 'users/index.html', context)
+    return redirect('login')
+    # return render(request, 'users/login.html', context)
 
 def register(request):
+    if request.user.is_authenticated:
+        return redirect('index')
     form = CustomUserCreationForm()
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
@@ -23,6 +28,8 @@ def register(request):
     return render(request, 'users/register.html', context)
 
 def loginPage(request):
+    if request.user.is_authenticated:
+        return redirect('index')
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
