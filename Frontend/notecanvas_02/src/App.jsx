@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
 import LandingPage from "./pages/LandingPage";
-import MorphingTest from "./components/MorphingTest";
 import CanvasPage from "./pages/CanvasPage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -18,11 +17,9 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-    return <LandingPage />;
-    // return <LandingPage />;
+    return <RouterProvider router={router} />;
     // return <LandingPage />;
     // return <CanvasPage />;
-    // return <MorphingTest />;
 }
 
 export default App;

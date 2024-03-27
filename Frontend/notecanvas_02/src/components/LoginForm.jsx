@@ -16,9 +16,8 @@ import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
     const navigate = useNavigate();
-
     const [loginFormData, setLoginFormData] = useState({
-        loginEmail: "",
+        loginEmailOrUsername: "",
         loginPassword: "",
     });
 
@@ -34,7 +33,7 @@ const LoginForm = () => {
     const [showPassword, setShowPassword] = useState(false);
 
     // todo: form validation
-    function validateLogin() {
+    function handleLogin() {
         let newErrors = {};
 
         // Basic form validation
@@ -47,10 +46,10 @@ const LoginForm = () => {
         }
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (
-            loginFormData.loginEmail &&
-            !emailRegex.test(loginFormData.loginEmail)
+            loginFormData.loginEmailOrUsername &&
+            !emailRegex.test(loginFormData.loginEmailOrUsername)
         ) {
-            newErrors.loginEmail = "Invalid email format";
+            newErrors.loginEmailOrUsername = "Invalid email format";
         }
 
         setFormErrors(newErrors);
@@ -84,13 +83,13 @@ const LoginForm = () => {
             <FormControl fullWidth>
                 <Box height={10}></Box>
                 <FilledTextField
-                    name="loginEmail"
+                    name="loginEmailOrUsername"
                     onChange={handleChange}
-                    value={loginFormData.loginEmail}
+                    value={loginFormData.loginEmailOrUsername}
                     label={"Email"}
                     placeholder={"someone@somewhere.com"}
-                    helperText={formErrors.loginEmail}
-                    error={formErrors.loginEmail ? true : false}
+                    helperText={formErrors.loginEmailOrUsername}
+                    error={formErrors.loginEmailOrUsername ? true : false}
                 />
                 <TextField
                     name="loginPassword"
@@ -130,13 +129,14 @@ const LoginForm = () => {
                                             sx={{ color: "#ffffff70" }}
                                         />
                                     )}
+                                    {/* react button component */}
                                 </IconButton>
                             </InputAdornment>
                         ),
                     }}
                 />
                 <Stack direction={"row"} justifyContent={"space-between"}>
-                    <RoundedButton onClick={validateLogin}>Login</RoundedButton>
+                    <RoundedButton onClick={handleLogin}>Login</RoundedButton>
                     <RoundedButton
                         variant="text"
                         bgcolor="transparent"
