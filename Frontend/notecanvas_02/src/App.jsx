@@ -3,6 +3,9 @@ import "./App.css";
 import LandingPage from "./pages/LandingPage";
 import CanvasPage from "./pages/CanvasPage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Playground from "./pages/Playground";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
 const router = createBrowserRouter([
     {
@@ -14,11 +17,19 @@ const router = createBrowserRouter([
         path: "/canvas",
         element: <CanvasPage />,
     },
+    {
+        path: "/payground",
+        element: <Playground />,
+    },
 ]);
 
 function App() {
-    return <RouterProvider router={router} />;
-    // return <LandingPage />;
+    // return <RouterProvider router={router} />;
+    return (
+        <DndProvider backend={HTML5Backend}>
+            <Playground />;
+        </DndProvider>
+    );
     // return <CanvasPage />;
 }
 
