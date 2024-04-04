@@ -49,34 +49,22 @@ const UserAvatar = () => {
 
             {showuUserMenu ? <UserMenu /> : <></>}
 
-            <AvatarGroup>
-                <Avatar
-                    sx={{
+            <AvatarGroup
+                max={3}
+                sx={{
+                    "& .MuiAvatar-root": {
                         height: 50,
                         width: 50,
                         borderRadius: "50%",
                         color: "#ffffff50",
                         backgroundColor: "#2C2C2C",
-                    }}
-                />
-                <Avatar
-                    sx={{
-                        height: 50,
-                        width: 50,
-                        borderRadius: "50%",
-                        color: "#ffffff50",
-                        backgroundColor: "#2C2C2C",
-                    }}
-                />
-                <Avatar
-                    sx={{
-                        height: 50,
-                        width: 50,
-                        borderRadius: "50%",
-                        color: "#ffffff50",
-                        backgroundColor: "#2C2C2C",
-                    }}
-                />
+                        border: "none",
+                    },
+                }}
+            >
+                <Avatar />
+                <Avatar />
+                <Avatar />
             </AvatarGroup>
         </Stack>
     );

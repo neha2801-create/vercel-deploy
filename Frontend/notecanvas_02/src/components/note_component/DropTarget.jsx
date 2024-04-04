@@ -23,10 +23,12 @@ const DropTarget = ({ children }) => {
         <div
             ref={drop}
             style={{
-                position: "fixed",
-                width: "100%",
-                height: "100%",
-                backgroundColor: "transparent",
+                // position: "fixed",
+                margin: "20px",
+                width: "calc(100vw - 40px)",
+                height: "calc(100vh - 40px)",
+                // backgroundColor: "transparent",
+                backgroundColor: "#F6F6F6",
             }}
         >
             {children}
