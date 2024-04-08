@@ -65,113 +65,126 @@ const DraggableBox = ({
         }
     };
 
+    const [isHovered, setIsHovered] = React.useState(false);
+
     return (
-        <Rnd
-            onClick={onClick}
-            default={{
-                x: 0,
-                y: 0,
-                width: 300,
-                height: 300,
-            }}
-            minHeight={250}
-            minWidth={250}
-            onResize={handleResize}
-            style={{
-                display: "flex",
-                border: border,
-                borderRadius: "17px",
-                backgroundColor: noteBGColor,
-                backdropFilter: "blur(10px)",
-                zIndex: zIndex,
-            }}
+        <div
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
         >
-            <Stack flexGrow={1} width={"100%"}>
-                <Stack direction={"row"} justifyContent={"space-between"}>
-                    <IconButton onClick={handleNoteDelete}>
-                        <CloseIcon />
-                    </IconButton>
+            <Rnd
+                onClick={onClick}
+                default={{
+                    x: 0,
+                    y: 0,
+                    width: 300,
+                    height: 300,
+                }}
+                minHeight={250}
+                minWidth={250}
+                onResize={handleResize}
+                style={{
+                    display: "flex",
+                    border: border,
+                    borderRadius: "10px",
+                    backgroundColor: noteBGColor,
+                    backdropFilter: "blur(10px)",
+                    zIndex: zIndex,
+                }}
+            >
+                <Stack flexGrow={1} width={"100%"}>
+                    {isHovered ? (
+                        <Stack
+                            direction={"row"}
+                            justifyContent={"space-between"}
+                        >
+                            <IconButton onClick={handleNoteDelete}>
+                                <CloseIcon />
+                            </IconButton>
+
+                            <Stack
+                                direction={"row"}
+                                justifyContent={"center"}
+                                alignItems={"center"}
+                                alignContent={"center"}
+                                spacing={0.5}
+                            >
+                                <NoteColorButton
+                                    color={"#ffffff"}
+                                    onclick={() => setNoteBGColor("#ffffff50")}
+                                />
+                                <NoteColorButton
+                                    color={"#A8CC8C"}
+                                    onclick={() => setNoteBGColor("#A8CC8C50")}
+                                />
+                                <NoteColorButton
+                                    color={"#DEC63D"}
+                                    onclick={() => setNoteBGColor("#DEC63D50")}
+                                />
+                                <NoteColorButton
+                                    color={"#C5B8A4"}
+                                    onclick={() => setNoteBGColor("#C5B8A450")}
+                                />
+                                <NoteColorButton
+                                    color={"#658080"}
+                                    onclick={() => setNoteBGColor("#65808050")}
+                                />
+                                <NoteColorButton
+                                    color={"#6FC5CB"}
+                                    onclick={() => setNoteBGColor("#6FC5CB50")}
+                                />
+                            </Stack>
+                            <IconButton onClick={handleAddNewNote}>
+                                <AddIcon />
+                            </IconButton>
+                        </Stack>
+                    ) : null}
                     <Stack
-                        direction={"row"}
+                        onClick={handleNoteContentChange}
+                        onDoubleClick={() => console.log("Note double clicked")}
+                        flexGrow={1}
+                        paddingTop={3}
+                        px={2}
+                        pb={2}
                         justifyContent={"center"}
                         alignItems={"center"}
-                        alignContent={"center"}
-                        spacing={0.5}
+                        overflow={"auto"}
+                        sx={{
+                            scrollbarColor: "#00000050 #ffffff00",
+                            scrollbarWidth: "thin",
+                            scrollbarGutter: "0",
+                            scrollMargin: "0",
+                            scrollBehavior: "smooth",
+                        }}
                     >
-                        <NoteColorButton
-                            color={"#ffffff"}
-                            onclick={() => setNoteBGColor("#ffffff50")}
-                        />
-                        <NoteColorButton
-                            color={"#A8CC8C"}
-                            onclick={() => setNoteBGColor("#A8CC8C50")}
-                        />
-                        <NoteColorButton
-                            color={"#DEC63D"}
-                            onclick={() => setNoteBGColor("#DEC63D50")}
-                        />
-                        <NoteColorButton
-                            color={"#C5B8A4"}
-                            onclick={() => setNoteBGColor("#C5B8A450")}
-                        />
-                        <NoteColorButton
-                            color={"#658080"}
-                            onclick={() => setNoteBGColor("#65808050")}
-                        />
-                        <NoteColorButton
-                            color={"#6FC5CB"}
-                            onclick={() => setNoteBGColor("#6FC5CB50")}
+                        <TextField
+                            variant="standard"
+                            minRows={9}
+                            InputProps={{
+                                sx: {
+                                    textAlign: "center",
+                                    border: "none",
+                                    outline: "none",
+                                    padding: 0,
+                                    backgroundColor: "transparent",
+                                    fontFamily: "Poppins",
+                                },
+                                disableUnderline: true,
+                            }}
+                            id="noteContentTextField"
+                            value={noteContent}
+                            onChange={(e) => setNoteContent(e.target.value)}
+                            // when losing focus, toggle noteEditMode
+                            onBlur={() => handleNoteContentChange()}
+                            multiline
+                            autoFocus
+                            fullWidth
+                            placeholder={"ಠ_ಠ Write something..."}
                         />
                     </Stack>
-                    <IconButton onClick={handleAddNewNote}>
-                        <AddIcon />
-                    </IconButton>
                 </Stack>
-                <Stack
-                    onClick={handleNoteContentChange}
-                    onDoubleClick={() => console.log("Note double clicked")}
-                    flexGrow={1}
-                    paddingTop={3}
-                    px={2}
-                    pb={2}
-                    justifyContent={"center"}
-                    alignItems={"center"}
-                    overflow={"auto"}
-                    sx={{
-                        scrollbarColor: "#00000050 #ffffff00",
-                        scrollbarWidth: "thin",
-                        scrollbarGutter: "0",
-                        scrollMargin: "0",
-                        scrollBehavior: "smooth",
-                    }}
-                >
-                    <TextField
-                        variant="standard"
-                        minRows={9}
-                        InputProps={{
-                            sx: {
-                                textAlign: "center",
-                                border: "none",
-                                outline: "none",
-                                padding: 0,
-                                backgroundColor: "transparent",
-                                fontFamily: "Poppins",
-                            },
-                            disableUnderline: true,
-                        }}
-                        id="noteContentTextField"
-                        value={noteContent}
-                        onChange={(e) => setNoteContent(e.target.value)}
-                        // when losing focus, toggle noteEditMode
-                        onBlur={() => handleNoteContentChange()}
-                        multiline
-                        autoFocus
-                        fullWidth
-                        placeholder={"ಠ_ಠ Write something..."}
-                    />
-                </Stack>
-            </Stack>
-        </Rnd>
+            </Rnd>
+        </div>
     );
 };
 

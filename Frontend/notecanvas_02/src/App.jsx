@@ -7,6 +7,7 @@ import Playground from "./pages/Playground";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import CanvasActivePage from "./pages/CanvasActivePage";
+import CanvasPageActiveTwo from "./pages/CanvasPageActiveTwo";
 
 const router = createBrowserRouter([
     {
@@ -28,6 +29,7 @@ function App() {
     // return <RouterProvider router={router} />;
     return (
         <DndProvider backend={HTML5Backend}>
+            {/* <CanvasPageActiveTwo /> */}
             <CanvasActivePage />
         </DndProvider>
     );
