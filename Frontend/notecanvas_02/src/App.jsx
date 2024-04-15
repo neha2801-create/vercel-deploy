@@ -8,6 +8,7 @@ import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import CanvasActivePage from "./pages/CanvasActivePage";
 import CanvasPageActiveTwo from "./pages/CanvasPageActiveTwo";
+import Dashboard from "./pages/Dashboard";
 
 const router = createBrowserRouter([
     {
@@ -17,7 +18,15 @@ const router = createBrowserRouter([
     },
     {
         path: "/canvas",
-        element: <CanvasActivePage />,
+        element: (
+            <DndProvider backend={HTML5Backend}>
+                <CanvasActivePage />
+            </DndProvider>
+        ),
+    },
+    {
+        path: "/dashboard",
+        element: <Dashboard />,
     },
     {
         path: "/payground",
@@ -27,13 +36,13 @@ const router = createBrowserRouter([
 
 function App() {
     // return <RouterProvider router={router} />;
-    return (
-        <DndProvider backend={HTML5Backend}>
-            {/* <CanvasPageActiveTwo /> */}
-            <CanvasActivePage />
-        </DndProvider>
-    );
+    // return (
+    //     <DndProvider backend={HTML5Backend}>
+    //         <CanvasActivePage />
+    //     </DndProvider>
+    // );
     // return <CanvasPage />;
+    return <Dashboard />;
 }
 
 export default App;

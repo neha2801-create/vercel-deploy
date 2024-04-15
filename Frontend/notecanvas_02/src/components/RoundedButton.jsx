@@ -12,6 +12,7 @@ const RoundedButton = ({
     children,
     disabled = false,
     onClick,
+    borderRadius = "11px",
 }) => {
     return (
         <Button
@@ -27,7 +28,7 @@ const RoundedButton = ({
                 mt: mt,
                 maxWidth: "fit-content",
                 bgcolor: bgcolor,
-                borderRadius: "11px",
+                borderRadius: borderRadius,
                 textDecoration: "none",
                 textTransform: "capitalize",
                 fontFamily: "poppins",
