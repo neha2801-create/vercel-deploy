@@ -1,60 +1,63 @@
 from django.shortcuts import render, redirect
-from .forms import CustomUserCreationForm
 from django.contrib.auth import get_user_model
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
+from .models import CustomUser
+from django.contrib.auth.hashers import make_password
+import json
 
-# Create your views here.
-def index(request):
-    context = {}
-    if request.user.is_authenticated:
-        return render(request, 'users/index.html', context)
-    return redirect('login')
-    # return render(request, 'users/login.html', context)
-
+@csrf_exempt
 def register(request):
     if request.user.is_authenticated:
         return redirect('index')
-    form = CustomUserCreationForm()
     if request.method == 'POST':
-        form = CustomUserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "Account created")
-            return redirect('login')
-    context = {
-        'form': form
-    }
-    return render(request, 'users/register.html', context)
+        try:
+            # Assuming you receive JSON data
+            data = json.loads(request.body)
+            print(request.body)
+            user = CustomUser.objects.create(
+                username=data['signUpUsername'],
+                email=data['signUpEmail'],
+                full_name=data['signUpFullName'],
+                password=make_password(data['signUpPassword']),
+                # profile_picture=data['signUpProfilePic'] # todo: check if data contains signupProfilepic key then only access it
+            )
+            user.save()
+            return JsonResponse({'message': 'User created successfully'}, status=201)
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=400)
+    else:
+        return JsonResponse({'error': 'Invalid HTTP method'}, status=405)
 
+@csrf_exempt
 def loginPage(request):
     if request.user.is_authenticated:
         return redirect('index')
     if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        user1 = authenticate(request, username=username, password=password)
-
-        email = request.POST.get('username')
-        User = get_user_model()
         try:
-            username2 = User.objects.get(email=email) #get username from email
-        except User.DoesNotExist:
-            username2 = None
-        user2 = authenticate(request, username=username2, password=password)
+            data = json.loads(request.body)
+            email = data.get('email')
+            password = data.get('password')
+            User = get_user_model()
+            try:
+                username = User.objects.get(email=email) #get username from email
+            except User.DoesNotExist:
+                username = None
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return JsonResponse({'message': 'Login successful'}, status=200)
+            else:
+                return JsonResponse({'error': 'Invalid credentials'}, status=400)
 
-        if user1 is not None:
-            login(request, user1)
-            return redirect('index')
-        elif user2 is not None:
-            login(request, user2)
-            return redirect('index')
-        else:
-            messages.info(request, "Username or password is incorrect")
-    context = {}
-    return render(request, 'users/login.html', context)
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=400)
+    else:
+        return JsonResponse({'error': 'Invalid HTTP method'}, status=405)
 
-
+@csrf_exempt
 def logoutUser(request):
     logout(request)
-    return redirect('login')
+    return JsonResponse({'message': 'Logged out successfully'}, status=200)

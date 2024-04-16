@@ -1,10 +1,11 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, User
 
-# Create your models here.
 class CustomUser(AbstractUser):
+    username = models.CharField(max_length=50, unique=True)
+    email = models.EmailField(unique=True)
     full_name = models.CharField(max_length=255, blank=True, null=True)
+    profile_picture = models.ImageField(upload_to='profile_pics/', null=True, blank=True)
 
     class Meta:
-        unique_together = ('username', 'email')
-
+        verbose_name = "Custom User"
