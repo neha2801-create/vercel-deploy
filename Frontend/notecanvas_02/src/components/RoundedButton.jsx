@@ -13,10 +13,12 @@ const RoundedButton = ({
     disabled = false,
     onClick,
     borderRadius = "11px",
+    type = "button",
 }) => {
     return (
         <Button
             variant={variant}
+            type={type}
             onClick={onClick}
             disabled={disabled}
             disableRipple={variant == "text" ? true : false}

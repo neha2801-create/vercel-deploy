@@ -17,16 +17,16 @@ const router = createBrowserRouter([
         errorElement: <div>404 not found</div>,
     },
     {
+        path: "/dashboard",
+        element: <Dashboard />,
+    },
+    {
         path: "/canvas",
         element: (
             <DndProvider backend={HTML5Backend}>
                 <CanvasActivePage />
             </DndProvider>
         ),
-    },
-    {
-        path: "/dashboard",
-        element: <Dashboard />,
     },
     {
         path: "/payground",

@@ -26,7 +26,7 @@ const SpaceItemCard = ({
             bgcolor={"#141414"}
             p={2}
             color={"white"}
-            border={"1px #ffffff20 solid"}
+            // border={"1px #ffffff20 solid"}
             borderRadius={"10px"}
             direction={"row"}
             alignItems={"center"}
@@ -34,7 +34,7 @@ const SpaceItemCard = ({
             onClick={onClick}
             sx={{
                 "&:hover": {
-                    border: "1px #ffffff50 solid",
+                    // border: "1px #ffffff50 solid",
                     cursor: "pointer",
                     bgcolor: "#090909",
                 },
@@ -59,8 +59,15 @@ const SpaceItemCard = ({
                 <IconButton
                     sx={{
                         ml: 2,
+                        width: 40,
+                        height: 40,
                         color: "grey",
                         display: deleteIconVisibility ? "block" : "none",
+                        // higlight sliglty red on hover
+                        "&:hover": {
+                            bgcolor: "#FF5300",
+                            color: "black",
+                        },
                     }}
                     onClick={onDelete}
                 >

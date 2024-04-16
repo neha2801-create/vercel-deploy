@@ -14,8 +14,8 @@ const AddNewSpaceButton = ({ onClick }) => {
                     zIndex: 100000,
                     height: "80px",
                     width: "80px",
-                    borderRadius: "80px",
-                    borderRadius: "50%",
+
+                    borderRadius: "24px",
                     position: "fixed",
                     bottom: "50px",
                     left: "50px",
