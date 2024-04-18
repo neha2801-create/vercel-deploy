@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import UserAvatar from "../components/UserAvatar";
-import BottomRightChatButton from "../components/chat_component/BottomRightChatButton";
+import BottomRightChatButton from "../components/chat_component/BottomRightUsersButton";
 import { Space } from "react-zoomable-ui";
 import DropTarget from "../components/note_component/DropTarget";
 

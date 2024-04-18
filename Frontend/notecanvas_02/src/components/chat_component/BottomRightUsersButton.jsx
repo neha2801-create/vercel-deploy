@@ -1,8 +1,9 @@
 import React from "react";
 import { IconButton } from "@mui/material";
-import ForumIcon from "@mui/icons-material/Forum";
 
-const BottomRightChatButton = () => {
+import GroupIcon from "@mui/icons-material/Group";
+
+const BottomRightUsersButton = () => {
     const handleClick = () => {
         // todo: chat button logic goes here
         console.log("Chat Button Clicked");
@@ -21,12 +22,12 @@ const BottomRightChatButton = () => {
                 border: "1px #3F3F3F solid",
                 height: "50px",
                 width: "50px",
-                borderRadius: "25% 25% 0 25%",
+                borderRadius: "20px",
             }}
         >
-            <ForumIcon />
+            <GroupIcon />
         </IconButton>
     );
 };
 
-export default BottomRightChatButton;
+export default BottomRightUsersButton;

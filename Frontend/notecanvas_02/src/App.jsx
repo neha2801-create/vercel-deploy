@@ -35,14 +35,14 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-    // return <RouterProvider router={router} />;
+    return <RouterProvider router={router} />;
     // return (
     //     <DndProvider backend={HTML5Backend}>
     //         <CanvasActivePage />
     //     </DndProvider>
     // );
     // return <CanvasPage />;
-    return <Dashboard />;
+    // return <Dashboard />;
 }
 
 export default App;

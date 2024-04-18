@@ -61,16 +61,11 @@ const LoginForm = () => {
                 JSON.stringify(loginFormData)
             );
 
-            navigate("/canvas");
+            // navigate("/canvas");
         } else {
             console.log(formErrors);
         }
     }
-
-    // todo: change view to sign up form
-    const switchToSignUp = () => {
-        console.log("Switch to sign up");
-    };
 
     // todo: Forget password logic
     const forgetPassword = () => {};
@@ -81,14 +76,27 @@ const LoginForm = () => {
                 Log into your canvas
             </Typography>
             <FormControl fullWidth>
-                <Box height={10}></Box>
+                <Box height={15}>
+                    <Typography
+                        variant="body2"
+                        fontStyle={"italic"}
+                        color={"#BE0B00"}
+                        fontFamily={"poppins"}
+                    >
+                        {/* Email or passsword is incorrect. Try again. */}
+                        {formErrors.loginEmailOrUsername ||
+                        formErrors.loginPassword
+                            ? "Email or passsword is incorrect. Try again."
+                            : ""}
+                    </Typography>
+                </Box>
                 <FilledTextField
                     name="loginEmailOrUsername"
                     onChange={handleChange}
                     value={loginFormData.loginEmailOrUsername}
                     label={"Email"}
                     placeholder={"someone@somewhere.com"}
-                    helperText={formErrors.loginEmailOrUsername}
+                    // helperText={formErrors.loginEmailOrUsername}
                     error={formErrors.loginEmailOrUsername ? true : false}
                 />
                 <TextField
@@ -98,7 +106,7 @@ const LoginForm = () => {
                     required
                     label={"Password"}
                     placeholder={"darkDarkSecret"}
-                    helperText={formErrors.loginPassword}
+                    // helperText={formErrors.loginPassword}
                     error={formErrors.loginPassword ? true : false}
                     variant="filled"
                     type={showPassword ? "text" : "password"}

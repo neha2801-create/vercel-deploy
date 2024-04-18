@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { useDrop } from "react-dnd";
 import DraggableBox from "./DraggableBox";
-import { Box, Stack } from "@mui/material";
-import { Space } from "react-zoomable-ui";
+import { Stack, Typography } from "@mui/material";
 
-const DropTarget = ({ children }) => {
+const DropTarget = ({ children, spaceNumber }) => {
     const [{ isOver }, drop] = useDrop({
         accept: "box",
         drop: (item, monitor) => {
@@ -32,8 +31,10 @@ const DropTarget = ({ children }) => {
             )
         );
     };
+
     // function to add new note card
     const addNoteCard = (e) => {
+        e.preventDefault(); // Prevent default behavior
         console.log("Adding new note card");
         const newId = noteCards.length + 1;
 
@@ -43,13 +44,13 @@ const DropTarget = ({ children }) => {
         console.log("left:", left);
         console.log("top:", top);
 
-        // // need to add padding when adding new note card
-        // const left = Math.floor(Math.random() * (window.innerWidth - 300));
-        // const top = Math.floor(Math.random() * (window.innerHeight - 300));
         setNoteCards((prevNoteCards) => [
             ...prevNoteCards,
             { id: newId, left, top },
         ]);
+
+        // set focus on new note card
+        setFocusedNoteId(newId);
     };
 
     // function to delete note card
@@ -62,18 +63,15 @@ const DropTarget = ({ children }) => {
 
     // function to set focus on note card
     const [focusedNoteId, setFocusedNoteId] = useState(null);
-    const handleFocus = (id) => {
+    const handleFocus = (e, id) => {
+        e.preventDefault(); // Prevent default behavior
         console.log("Setting focus on note with id: ", id);
         setFocusedNoteId(id);
     };
 
     return (
-        // <Space>
         <Stack
-            // height={"940px"}
-            // width={"940px"}
             padding={"20px"}
-            border={"1px dashed red"}
             justifyContent={"center"}
             alignItems={"center"}
             direction={"column"}
@@ -83,12 +81,8 @@ const DropTarget = ({ children }) => {
                 ref={drop}
                 style={{
                     borderRadius: "10px",
-                    // position: "fixed",
-                    // margin: "20px",
-                    // aspectRatio: "16/9",
                     height: "calc(100vh - 40px)",
                     width: "calc(99vw - 40px)",
-                    // backgroundColor: "transparent",
                     backgroundColor: "#D9D9D9",
                 }}
             >
@@ -100,15 +94,28 @@ const DropTarget = ({ children }) => {
                         top={noteCard.top}
                         moveBox={moveBox}
                         zIndex={focusedNoteId === noteCard.id ? 1000 : 1}
-                        onClick={() => handleFocus(noteCard.id)}
+                        onClick={(e) => handleFocus(e, noteCard.id)}
                         handleNoteDelete={() => deleteNoteCard(noteCard.id)}
                         handleAddNewNote={addNoteCard}
                     />
                 ))}
                 {children}
             </div>
+            <Typography
+                variant="caption"
+                fontFamily={"poppins"}
+                style={{
+                    position: "relative",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    bottom: "0",
+                    padding: "20px",
+                    opacity: 0.5,
+                }}
+            >
+                Space {spaceNumber}
+            </Typography>
         </Stack>
-        // </Space>
     );
 };
 

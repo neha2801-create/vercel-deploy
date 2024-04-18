@@ -33,6 +33,12 @@ const SignUpForm = () => {
             signUpUsername: "",
             signUpPassword: "",
         });
+        setFormErrors({
+            signUpFullName: "",
+            signUpEmail: "",
+            signUpUsername: "",
+            signUpPassword: "",
+        });
     };
 
     // const [signUpButtonDisabled, setSignUpButtonDisabled] = useState(true);
@@ -68,6 +74,7 @@ const SignUpForm = () => {
         // displaying errors
         setFormErrors(newErrors);
 
+        // if no errors, submit form
         if (Object.keys(newErrors).length === 0) {
             // todo 2: Sending form to backend
             // setSignUpButtonDisabled(true);
@@ -95,14 +102,47 @@ const SignUpForm = () => {
 
     const [showPassword, setShowPassword] = useState(false);
 
+    const [avatarFile, setAvatarFile] = useState(null);
+    const handleAvatarUpload = () => {
+        console.log("Avatar upload");
+
+        // todo: profile photo upload logic goes here
+        // get the image file
+        // upload to the server
+        // get the url
+        // set the url to the user profile
+
+        // for now, just log the file
+        console.log(document.getElementById("fileInput").files[0].name);
+        setAvatarFile(document.getElementById("fileInput").files[0].name);
+    };
+
     return (
         <Stack width={"100%"} alignContent={"start"} justifyContent={"start"}>
             <Typography color={"#ffffff"} fontSize={24} fontFamily={"poppins"}>
                 Create a new account
             </Typography>
+            <Box height={15}>
+                <Typography
+                    variant="body2"
+                    fontStyle={"italic"}
+                    color={"#BE0B00"}
+                    fontFamily={"poppins"}
+                >
+                    {/* if there are errors, show a message  */}
+                    {formErrors.signUpFullName ||
+                    formErrors.signUpEmail ||
+                    formErrors.signUpUsername ||
+                    formErrors.signUpPassword
+                        ? "Please fix the errors below"
+                        : ""}
+                </Typography>
+            </Box>
             <FormControl fullWidth>
                 <Stack mt={3} direction={"row"}>
                     <Avatar
+                        // onChange={handleAvatarUpload}
+                        src={avatarFile}
                         sx={{
                             height: 100,
                             width: 100,
@@ -111,7 +151,17 @@ const SignUpForm = () => {
                             backgroundColor: "#2C2C2C",
                         }}
                     />
+                    <input
+                        type="file"
+                        id="fileInput"
+                        style={{ display: "none" }}
+                        onChange={handleAvatarUpload}
+                    />
+
                     <RoundedButton
+                        onClick={() =>
+                            document.getElementById("fileInput").click()
+                        }
                         variant="text"
                         bgcolor="transparent"
                         fontWeight={400}

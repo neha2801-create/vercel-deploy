@@ -5,8 +5,8 @@ import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
 const SpaceItemCard = ({
     id,
-    title = "New Space",
-    timestamp = "4:42 PM 12/12/2021",
+    title = "Untitled Space",
+    timestamp = "--",
     onDelete,
     onClick,
 }) => {
@@ -51,7 +51,7 @@ const SpaceItemCard = ({
                     width={180}
                     textAlign={"right"}
                 >
-                    Last edited <br />
+                    Created on <br />
                     {timestamp}
                 </Typography>
 

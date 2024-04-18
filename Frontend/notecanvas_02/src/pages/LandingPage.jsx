@@ -19,6 +19,7 @@ import LoginCardUpperThings from "../components/LoginCardUpperThings";
 import LoginForm from "../components/LoginForm";
 import SignUpForm from "../components/SignUpForm";
 import { AnimatePresence, motion } from "framer-motion";
+import NewLogo from "../assets/new_logo@3x.png";
 
 const WrapperStyle = {
     // border: "1px dashed red",
@@ -57,7 +58,16 @@ const LandingPage = () => {
                                 minHeight={"350px"}
                                 padding="40px 40px 30px 40px"
                             >
-                                <img src={LogoOrange} height={100} />
+                                <img
+                                    src={NewLogo}
+                                    height={80}
+                                    style={{
+                                        backgroundColor: "#23232220",
+                                        border: "1px solid #f2f2f260",
+                                        padding: 10,
+                                        borderRadius: "25px",
+                                    }}
+                                />
                                 <Typography
                                     fontSize={30}
                                     fontFamily={"poppins"}
@@ -66,7 +76,7 @@ const LandingPage = () => {
                                 >
                                     NoteCanvas
                                 </Typography>
-                                <p style={{ width: "400px" }}>
+                                <p style={{ width: "400px", opacity: 0.7 }}>
                                     Think visually, organize intuitively.
                                     NoteCanvas empowers you to build your
                                     thoughts and ideas on a flexible canvas,
@@ -131,7 +141,7 @@ const LandingPage = () => {
                                 // mt={2}
                                 fontWeight={600}
                             >
-                                In development
+                                Deployed
                             </Typography>
                             <Stack direction={"row"} gap={15}>
                                 <Box>

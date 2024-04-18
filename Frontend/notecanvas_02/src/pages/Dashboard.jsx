@@ -19,7 +19,8 @@ import OnlineUserCard from "../components/OnlineUserCard";
 import TuneOutlinedIcon from "@mui/icons-material/TuneOutlined";
 import NewLogo from "../assets/new_logo@3x.png";
 import NewSpaceDialog from "../components/NewSpaceDialog";
-import { formToJSON } from "axios";
+import { v4 as uuidv4 } from "uuid";
+import { format } from "date-fns";
 
 const Dashboard = () => {
     // logout function
@@ -29,46 +30,46 @@ const Dashboard = () => {
 
     // Lists of spaces and online users (rn static but will be fetched from backend) - useEffect
     const [spacesList, setSpacesList] = React.useState([
-        {
-            id: 1,
-            title: "Web Dev Project Brainstorming",
-            timestamp: "4:42 PM 12/12/2021",
-        },
-        {
-            id: 2,
-            title: "Sequences and Series",
-            timestamp: "4:42 PM 12/12/2021",
-        },
-        {
-            id: 3,
-            title: "Design Inspo",
-            timestamp: "4:42 PM 12/12/2021",
-        },
-        {
-            id: 4,
-            title: "Overlapping Squares and Circles",
-            timestamp: "4:42 PM 12/12/2021",
-        },
-        {
-            id: 5,
-            title: "Food Blog Ideas",
-            timestamp: "4:42 PM 12/12/2021",
-        },
-        {
-            id: 6,
-            title: "Tentative Component List",
-            timestamp: "4:42 PM 12/12/2021",
-        },
-        {
-            id: 7,
-            title: "Sleep Walking Ideas",
-            timestamp: "4:42 PM 12/12/2021",
-        },
-        {
-            id: 8,
-            title: "Space 8",
-            timestamp: "4:42 PM 12/12/2021",
-        },
+        // {
+        //     id: 1,
+        //     title: "Web Dev Project Brainstorming",
+        //     timestamp: "4:42 PM 12/12/2021",
+        // },
+        // {
+        //     id: 2,
+        //     title: "Sequences and Series",
+        //     timestamp: "4:42 PM 12/12/2021",
+        // },
+        // {
+        //     id: 3,
+        //     title: "Design Inspo",
+        //     timestamp: "4:42 PM 12/12/2021",
+        // },
+        // {
+        //     id: 4,
+        //     title: "Overlapping Squares and Circles",
+        //     timestamp: "4:42 PM 12/12/2021",
+        // },
+        // {
+        //     id: 5,
+        //     title: "Food Blog Ideas",
+        //     timestamp: "4:42 PM 12/12/2021",
+        // },
+        // {
+        //     id: 6,
+        //     title: "Tentative Component List",
+        //     timestamp: "4:42 PM 12/12/2021",
+        // },
+        // {
+        //     id: 7,
+        //     title: "Sleep Walking Ideas",
+        //     timestamp: "4:42 PM 12/12/2021",
+        // },
+        // {
+        //     id: 8,
+        //     title: "Space 8",
+        //     timestamp: "4:42 PM 12/12/2021",
+        // },
     ]);
 
     const [onlineUsers, setOnlineUsers] = React.useState([
@@ -94,25 +95,56 @@ const Dashboard = () => {
         },
     ]);
 
+    const [currentSortOrder, setCurrentSortOrder] = React.useState("time");
+
     // Spaces Functions to handle add, delete and click on
     const handleAddNewSpace = (canvasName) => {
         console.log("Add new space clicked!");
         // new space will be added to the spaces list
         // mui dialog will be used to get the title of the space
-        const newId = spacesList.length + 1;
 
-        setSpacesList((prevSpacesList) => [
-            ...prevSpacesList,
-            {
-                id: newId,
-                title: `Space ${newId}`,
-                timestamp: "4:42 PM 12/12/2021",
-            },
-        ]);
-        // convert form data to json
-        const data = {
-            canvasName: canvasName,
+        // Create ID using uuid
+        const newId = uuidv4();
+        console.log(newId);
+
+        const timestamp = new Date();
+
+        const formattedTimestamp = format(timestamp, "h:mm:ss MM/dd/yyyy");
+
+        // check if the canvas name is empty
+        if (!canvasName) {
+            canvasName = "Untitled Space";
+        }
+
+        const newSpace = {
+            id: newId,
+            title: canvasName,
+            timestamp: formattedTimestamp,
         };
+
+        // add to the spaces list
+        setSpacesList((prevSpacesList) => [...prevSpacesList, newSpace]);
+        // sort by timestamp
+        // setSpacesList((prevSpacesList) =>
+        //     prevSpacesList.sort((a, b) => b.timestamp - a.timestamp)
+        // );
+
+        // sort by current selected sort order
+        if (currentSortOrder === "time") {
+            handleSortByTime();
+        } else {
+            handleSortByName();
+        }
+
+        // handleSortByTime();
+        // handleSortByName();
+
+        // convert form data to json
+        // const data = {
+        //     canvasName: canvasName,
+        // };
+
+        console.log("New Space Added: ", newSpace);
     };
 
     const handleSpaceClick = (id) => {
@@ -137,6 +169,30 @@ const Dashboard = () => {
         console.log("Option 2 clicked!");
     };
 
+    const handleSortByTime = () => {
+        console.log("sorting by time!");
+
+        setCurrentSortOrder("time");
+
+        // sort by timestamp
+        setSpacesList((prevSpacesList) =>
+            [...prevSpacesList].sort(
+                (a, b) => new Date(b.timestamp) - new Date(a.timestamp)
+            )
+        );
+    };
+
+    const handleSortByName = () => {
+        console.log("sorting by name!");
+
+        setCurrentSortOrder("name");
+
+        // sort by title
+        setSpacesList((prevSpacesList) =>
+            [...prevSpacesList].sort((a, b) => a.title.localeCompare(b.title))
+        );
+    };
+
     return (
         <Container
             maxWidth="xl"
@@ -144,7 +200,7 @@ const Dashboard = () => {
                 mt: 10,
                 display: "flex",
                 flexDirection: "column",
-                height: "100vh",
+                // height: "100vh",
             }}
         >
             <Stack alignItems={"center"} spacing={0.5}>
@@ -223,9 +279,6 @@ const Dashboard = () => {
             <Stack direction={"row"} spacing={2} mt={5}>
                 <Stack
                     flexGrow={1}
-                    // border={1}
-                    // mt={5}
-                    // bgcolor={"yellowgreen"}
                     direction={"row"}
                     alignItems={"center"}
                     justifyContent={"space-between"}
@@ -252,6 +305,65 @@ const Dashboard = () => {
                             {spacesList.length}
                         </Box>
                     </Typography>
+
+                    {/* Drop down button to select sort order by creation time or name */}
+                    <Stack
+                        direction={"row"}
+                        spacing={2}
+                        alignItems={"center"}
+                        color={"#ffffff70"}
+                    >
+                        <Typography variant="body2">Sort by</Typography>
+                        <Stack direction={"row"} border={1} borderRadius={10}>
+                            <Button
+                                disableRipple
+                                variant={
+                                    currentSortOrder === "time"
+                                        ? "contained"
+                                        : "text"
+                                }
+                                // color="primary"
+                                onClick={handleSortByTime}
+                                disableElevation
+                                sx={{
+                                    textTransform: "none",
+                                    color: "#ffffff70",
+                                    bgcolor:
+                                        currentSortOrder === "time"
+                                            ? "#FF530040"
+                                            : "transparent",
+                                    borderRadius: "20px",
+                                    fontWeight: 500,
+                                    fontFamily: "Poppins",
+                                }}
+                            >
+                                Time
+                            </Button>
+                            <Button
+                                disableElevation
+                                disableRipple
+                                variant={
+                                    currentSortOrder === "name"
+                                        ? "contained"
+                                        : "text"
+                                }
+                                color="primary"
+                                onClick={handleSortByName}
+                                sx={{
+                                    textTransform: "none",
+                                    color: "#ffffff70",
+                                    bgcolor:
+                                        currentSortOrder === "name" &&
+                                        "#FF530040",
+                                    borderRadius: "20px",
+                                    fontFamily: "Poppins",
+                                }}
+                            >
+                                Name
+                            </Button>
+                        </Stack>
+                    </Stack>
+
                     <NewSpaceDialog
                         handleNewSpaceCreation={handleAddNewSpace}
                     />
@@ -326,7 +438,8 @@ const Dashboard = () => {
                         fontFamily={"poppins"}
                         textAlign={"center"}
                     >
-                        • • •
+                        • • • <br />
+                        End of list
                     </Typography>
                 </Stack>
                 <Stack
