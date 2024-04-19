@@ -7,7 +7,7 @@ import {
     TextField,
     Typography,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FilledTextField from "./FilledTextField";
 import RoundedButton from "./RoundedButton";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
@@ -56,34 +56,34 @@ const LoginForm = () => {
         if (Object.keys(newErrors).length === 0) {
             // todo 2: Sending form to backend
             // setSignUpButtonDisabled(true);
-            fetch('http://127.0.0.1:8000/accounts/login/', {
-                method: 'POST',
+            fetch("http://127.0.0.1:8000/accounts/login/", {
+                method: "POST",
                 headers: {
-                    'Content-Type': 'application/json',
+                    "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
                     email: loginFormData.loginEmailOrUsername,
                     password: loginFormData.loginPassword,
                 }),
             })
-            .then(response => {
-                if(!response.ok){
-                    // If the server response is not ok (e.g., status 400 or 500), throw an error.
-                    // You could also check for specific statuses with response.status
-                    // Todo: show invalid credentials in frontend
-                    throw new Error('Network response was not ok.');
-                }
-                return response.json(); // parse json if response ok
-            })
-            .then(data => {
-                // Handle success, e.g., navigate to another page, store the token, etc.
-                // navigate("/dashboard"); // For example, after successful login
-                navigate("/canvas");
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-                // Handle errors, e.g., show error message to the user
-            });
+                .then((response) => {
+                    if (!response.ok) {
+                        // If the server response is not ok (e.g., status 400 or 500), throw an error.
+                        // You could also check for specific statuses with response.status
+                        // Todo: show invalid credentials in frontend
+                        throw new Error("Network response was not ok.");
+                    }
+                    return response.json(); // parse json if response ok
+                })
+                .then((data) => {
+                    // Handle success, e.g., navigate to another page, store the token, etc.
+                    // navigate("/dashboard"); // For example, after successful login
+                    navigate("/canvas");
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                    // Handle errors, e.g., show error message to the user
+                });
 
             console.log(
                 "Form submitted successfully:",

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/NoteCanvas.iml" filepath="$PROJECT_DIR$/.idea/NoteCanvas.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/NoteCanvas_deep.iml" filepath="$PROJECT_DIR$/.idea/NoteCanvas_deep.iml" />
     </modules>
   </component>
 </project>

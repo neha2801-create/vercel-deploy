@@ -31,14 +31,17 @@ const UserAvatar = () => {
         // todo: Logout logic goes here
         console.log("Logout");
         try {
-            const response = await fetch('http://127.0.0.1:8000/accounts/logout/', {
-                method: 'POST',
-                credentials: 'include', // Include cookies in the request. Needed for sessions.
-                headers: {
-                    'Content-Type': 'application/json',
-                    // Include CSRF token header if necessary for your backend
-                },
-            });
+            const response = await fetch(
+                "http://127.0.0.1:8000/accounts/logout/",
+                {
+                    method: "POST",
+                    credentials: "include", // Include cookies in the request. Needed for sessions.
+                    headers: {
+                        "Content-Type": "application/json",
+                        // Include CSRF token header if necessary for your backend
+                    },
+                }
+            );
 
             if (response.ok) {
                 // Logout successful

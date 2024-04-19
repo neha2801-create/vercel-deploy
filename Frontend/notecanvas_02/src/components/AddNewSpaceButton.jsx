@@ -15,7 +15,7 @@ const AddNewSpaceButton = ({ onClick }) => {
                     height: "80px",
                     width: "80px",
                     borderRadius: "80px",
-                    borderRadius: "50%",
+
                     position: "fixed",
                     bottom: "50px",
                     left: "50px",
