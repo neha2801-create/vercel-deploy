@@ -1,0 +1,572 @@
+POST http://127.0.0.1:8000/dashboard/
+Content-Length: 0
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Cookie: sessionid=2c05d0cebpd6ivffqssa7c3yjrj9fd2o
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-04-16T235303.200.json
+
+###
+
+POST http://127.0.0.1:8000/dashboard
+Content-Length: 0
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Cookie: sessionid=2c05d0cebpd6ivffqssa7c3yjrj9fd2o
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-04-16T235247.500.html
+
+###
+
+GET http://127.0.0.1:8000/accounts/check/
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Cookie: sessionid=2c05d0cebpd6ivffqssa7c3yjrj9fd2o
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-04-16T235052.200.json
+
+###
+
+POST http://127.0.0.1:8000/accounts/login/
+Content-Type: application/json
+Content-Length: 57
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+    "email": "deep@gmail.com",
+    "password": "deep"
+}
+
+<> 2024-04-16T235039.200.json
+
+###
+
+POST http://127.0.0.1:8000/accounts/logout/
+Content-Length: 0
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Cookie: sessionid=9c581kgqbqbbxpv84qoc4k5pcik4wh7a
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-04-16T235033.200.json
+
+###
+
+POST http://127.0.0.1:8000/accounts/login/
+Content-Type: application/json
+Content-Length: 57
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Cookie: sessionid=9c581kgqbqbbxpv84qoc4k5pcik4wh7a
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+    "email": "deep@gmail.com",
+    "password": "deep"
+}
+
+<> 2024-04-16T234928.500.html
+
+###
+
+POST http://127.0.0.1:8000/accounts/login/
+Content-Type: application/json
+Content-Length: 57
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Cookie: sessionid=9c581kgqbqbbxpv84qoc4k5pcik4wh7a
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+    "email": "deep@gmail.com",
+    "password": "deep"
+}
+
+<> 2024-04-16T234845.500.html
+
+###
+
+# @no-cookie-jar
+GET http://127.0.0.1:8000/accounts/check/
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-04-16T234824.200.json
+
+###
+
+POST http://127.0.0.1:8000/notes/create/1/
+Content-Type: application/json
+Content-Length: 106
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Cookie: sessionid=9c581kgqbqbbxpv84qoc4k5pcik4wh7a
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "posX": 100,
+  "posY": 100,
+  "height": 200,
+  "width": 200,
+  "pinned": false,
+  "color": "#ff0000"
+}
+
+<> 2024-04-16T234743.201.json
+
+###
+
+POST http://127.0.0.1:8000/notes/create/1/
+Content-Type: application/json
+Content-Length: 106
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Cookie: sessionid=9c581kgqbqbbxpv84qoc4k5pcik4wh7a
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "posX": 100,
+  "posY": 100,
+  "height": 200,
+  "width": 200,
+  "pinned": false,
+  "color": "#ff0000"
+}
+
+<> 2024-04-16T231648.201.json
+
+###
+
+GET http://127.0.0.1:8000/accounts/check/
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Cookie: sessionid=9c581kgqbqbbxpv84qoc4k5pcik4wh7a
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-04-16T231639.200.json
+
+###
+
+POST http://127.0.0.1:8000/notes/create/1/
+Content-Type: application/json
+Content-Length: 106
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Cookie: sessionid=9c581kgqbqbbxpv84qoc4k5pcik4wh7a
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "posX": 100,
+  "posY": 100,
+  "height": 200,
+  "width": 200,
+  "pinned": false,
+  "color": "#ff0000"
+}
+
+<> 2024-04-16T231609.201.json
+
+###
+
+GET http://127.0.0.1:8000/accounts/check/
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Cookie: sessionid=9c581kgqbqbbxpv84qoc4k5pcik4wh7a
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-04-16T231555.200.json
+
+###
+
+POST http://127.0.0.1:8000/accounts/login/
+Content-Type: application/json
+Content-Length: 57
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+    "email": "deep@gmail.com",
+    "password": "deep"
+}
+
+<> 2024-04-16T231316.200.json
+
+###
+
+POST http://127.0.0.1:8000/accounts/login/
+Content-Type: application/json
+Content-Length: 60
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+    "username": "deep@gmail.com",
+    "password": "deep"
+}
+
+<> 2024-04-16T231130.400.json
+
+###
+
+DELETE http://127.0.0.1:8000/notes/delete/4/
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-04-10T163704.200.json
+
+###
+
+DELETE http://127.0.0.1:8000/notes/delete/3/
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-04-10T163633.200.json
+
+###
+
+POST http://127.0.0.1:8000/notes/create/1/
+Content-Type: application/json
+Content-Length: 106
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "posX": 100,
+  "posY": 100,
+  "height": 200,
+  "width": 200,
+  "pinned": false,
+  "color": "#ff0000"
+}
+
+<> 2024-04-10T005528.201.json
+
+###
+
+PUT http://127.0.0.1:8000/notes/update/1/
+Content-Type: application/json
+Content-Length: 160
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "notesBody": "This is an updated sample note body.",
+  "posX": 150,
+  "posY": 150,
+  "height": 250,
+  "width": 250,
+  "pinned": true,
+  "color": "#00ff00"
+}
+
+<> 2024-04-10T005210.200.json
+
+###
+
+POST http://127.0.0.1:8000/notes/create/1/
+Content-Type: application/json
+Content-Length: 106
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "posX": 100,
+  "posY": 100,
+  "height": 200,
+  "width": 200,
+  "pinned": false,
+  "color": "#ff0000"
+}
+
+<> 2024-04-10T004851.201.json
+
+###
+
+POST http://127.0.0.1:8000/notes/create/1/
+Content-Type: application/json
+Content-Length: 121
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "canvas": 1,
+  "posX": 100,
+  "posY": 100,
+  "height": 200,
+  "width": 200,
+  "pinned": false,
+  "color": "#ff0000"
+}
+
+<> 2024-04-10T004548.400.json
+
+###
+
+POST http://127.0.0.1:8000/notes/create/1/
+Content-Type: application/json
+Content-Length: 121
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "canvas": 1,
+  "posX": 100,
+  "posY": 100,
+  "height": 200,
+  "width": 200,
+  "pinned": false,
+  "color": "#ff0000"
+}
+
+<> 2024-04-10T004144.400.json
+
+###
+
+POST http://127.0.0.1:8000/notes/create/0/
+Content-Type: application/json
+Content-Length: 121
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "canvas": 0,
+  "posX": 100,
+  "posY": 100,
+  "height": 200,
+  "width": 200,
+  "pinned": false,
+  "color": "#ff0000"
+}
+
+<> 2024-04-10T003801.400.json
+
+###
+
+POST http://127.0.0.1:8000/notes/create/1/
+Content-Type: application/json
+Content-Length: 121
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "canvas": 1,
+  "posX": 100,
+  "posY": 100,
+  "height": 200,
+  "width": 200,
+  "pinned": false,
+  "color": "#ff0000"
+}
+
+<> 2024-04-10T003736.400.json
+
+###
+
+POST http://127.0.0.1:8000/notes/create/1
+Content-Type: application/json
+Content-Length: 121
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "canvas": 1,
+  "posX": 100,
+  "posY": 100,
+  "height": 200,
+  "width": 200,
+  "pinned": false,
+  "color": "#ff0000"
+}
+
+<> 2024-04-10T003719.500.html
+
+###
+
+POST http://127.0.0.1:8000/notes/create/
+Content-Type: application/json
+Content-Length: 121
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "canvas": 1,
+  "posX": 100,
+  "posY": 100,
+  "height": 200,
+  "width": 200,
+  "pinned": false,
+  "color": "#ff0000"
+}
+
+<> 2024-04-10T003702.404.html
+
+###
+
+POST http://127.0.0.1:8000/canvas/create/
+Content-Type: application/json
+Content-Length: 48
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "title": "Sample Canvas",
+  "user": "deep"
+}
+
+<> 2024-04-09T235858.403.html
+
+###
+
+POST http://127.0.0.1:8000/canvas/create/
+Content-Type: application/json
+Content-Length: 48
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "title": "Sample Canvas",
+  "user": "deep"
+}
+
+<> 2024-04-09T235602.403.html
+
+###
+
+POST http://127.0.0.1:8000/canvas/create/
+Content-Type: application/json
+Content-Length: 48
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "title": "Sample Canvas",
+  "user": "deep"
+}
+
+<> 2024-04-09T235503.500.html
+
+###
+
+POST http://127.0.0.1:8000/canvas/create/
+Content-Type: application/json
+Content-Length: 48
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "title": "Sample Canvas",
+  "user": "deep"
+}
+
+<> 2024-04-09T235405.500.html
+
+###
+
+POST http://127.0.0.1:8000/canvas/create/
+Content-Type: application/json
+Content-Length: 48
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "title": "Sample Canvas",
+  "user": "deep"
+}
+
+<> 2024-04-09T235213.403.html
+
+###
+
+POST http://127.0.0.1:8000/canvas/create/
+Content-Type: application/json
+Content-Length: 48
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "title": "Sample Canvas",
+  "user": "deep"
+}
+
+<> 2024-04-09T235132.403.html
+
+###
+
+POST http://127.0.0.1:8000/canvas/create/
+Content-Type: application/json
+Content-Length: 48
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "title": "Sample Canvas",
+  "user": "deep"
+}
+
+<> 2024-04-09T235038.403.html
+
+###
+
+POST http://127.0.0.1:8000/canvas/create/
+Content-Type: application/json
+Content-Length: 48
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "title": "Sample Canvas",
+  "user": "deep"
+}
+
+<> 2024-04-09T234935.403.html
+
+###
+
+POST http://127.0.0.1:8000/notes/create/
+Content-Type: application/json
+Content-Length: 161
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.10)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "notesTitle": "Sample Note",
+  "notesBody": "This is a sample note body.",
+  "posX": 100,
+  "posY": 100,
+  "height": 200,
+  "width": 200,
+  "pinned": false
+}
+
+<> 2024-04-09T221427.201.json
+
+###
+

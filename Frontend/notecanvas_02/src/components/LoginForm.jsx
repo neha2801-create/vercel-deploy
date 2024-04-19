@@ -56,21 +56,52 @@ const LoginForm = () => {
         if (Object.keys(newErrors).length === 0) {
             // todo 2: Sending form to backend
             // setSignUpButtonDisabled(true);
+            fetch('http://127.0.0.1:8000/accounts/login/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: loginFormData.loginEmailOrUsername,
+                    password: loginFormData.loginPassword,
+                }),
+                credentials: 'include'
+            })
+            .then(response => {
+                if(!response.ok){
+                    // If the server response is not ok (e.g., status 400 or 500), throw an error.
+                    // You could also check for specific statuses with response.status
+                    // Todo: show invalid credentials in frontend
+                    throw new Error('Network response was not ok.');
+                }
+                return response.json(); // parse json if response ok
+            })
+            .then(data => {
+                // Handle success, e.g., navigate to another page, store the token, etc.
+                // navigate("/dashboard"); // For example, after successful login
+                // if (!)
+                navigate("/dashboard");
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                // Handle errors, e.g., show error message to the user
+            });
+            navigate("/");
+
             console.log(
                 "Form submitted successfully:",
                 JSON.stringify(loginFormData)
             );
 
-            navigate("/canvas");
         } else {
             console.log(formErrors);
         }
     }
 
     // todo: change view to sign up form
-    const switchToSignUp = () => {
-        console.log("Switch to sign up");
-    };
+    // const switchToSignUp = () => {
+    //     console.log("Switch to sign up");
+    // };
 
     // todo: Forget password logic
     const forgetPassword = () => {};
@@ -81,14 +112,27 @@ const LoginForm = () => {
                 Log into your canvas
             </Typography>
             <FormControl fullWidth>
-                <Box height={10}></Box>
+            <Box height={15}>
+                    <Typography
+                        variant="body2"
+                        fontStyle={"italic"}
+                        color={"#BE0B00"}
+                        fontFamily={"poppins"}
+                    >
+                        {/* Email or passsword is incorrect. Try again. */}
+                        {formErrors.loginEmailOrUsername ||
+                        formErrors.loginPassword
+                            ? "Email or passsword is incorrect. Try again."
+                            : ""}
+                    </Typography>
+                </Box>
                 <FilledTextField
                     name="loginEmailOrUsername"
                     onChange={handleChange}
                     value={loginFormData.loginEmailOrUsername}
                     label={"Email"}
                     placeholder={"someone@somewhere.com"}
-                    helperText={formErrors.loginEmailOrUsername}
+                    //helperText={formErrors.loginEmailOrUsername}
                     error={formErrors.loginEmailOrUsername ? true : false}
                 />
                 <TextField
@@ -98,7 +142,7 @@ const LoginForm = () => {
                     required
                     label={"Password"}
                     placeholder={"darkDarkSecret"}
-                    helperText={formErrors.loginPassword}
+                    //helperText={formErrors.loginPassword}
                     error={formErrors.loginPassword ? true : false}
                     variant="filled"
                     type={showPassword ? "text" : "password"}

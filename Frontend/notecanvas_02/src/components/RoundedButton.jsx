@@ -26,6 +26,10 @@ const RoundedButton = ({
                 ":disabled": {
                     color: "#ffffff30",
                 },
+                ":hover": {
+                    color: "#ffffff30",
+
+                },
                 padding: "10px 20px",
                 mt: mt,
                 maxWidth: "fit-content",

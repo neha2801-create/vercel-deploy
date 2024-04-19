@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Stack, Typography, IconButton, Menu, MenuItem } from "@mui/material";
+import { Stack, Typography, IconButton, Menu, MenuItem, Box } from "@mui/material";
 import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
@@ -24,14 +24,14 @@ const SpaceItemCard = ({
         <Stack
             id={id}
             bgcolor={"#141414"}
-            p={2}
+            // p={2}
             color={"white"}
             // border={"1px #ffffff20 solid"}
             borderRadius={"10px"}
             direction={"row"}
             alignItems={"center"}
             justifyContent={"space-between"}
-            onClick={onClick}
+            
             sx={{
                 "&:hover": {
                     // border: "1px #ffffff50 solid",
@@ -42,16 +42,26 @@ const SpaceItemCard = ({
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
         >
-            <Typography fontFamily={"poppins"}>{title}</Typography>
+            <div onClick={onClick} style={{
+flexGrow:1,
+            }}>
+                <Typography display={"flex"} sx={
+                    {
+                        
+                        padding: "20px"
+                    }
 
-            <Stack direction={"row"}>
+                } flex fontFamily={"poppins"}>{title}</Typography>
+            </div>
+
+            <Stack direction={"row"} p={2}>
                 <Typography
                     variant="body2"
                     color={"#ffffff50"}
                     width={180}
                     textAlign={"right"}
                 >
-                    Last edited <br />
+                    Created on <br />
                     {timestamp}
                 </Typography>
 

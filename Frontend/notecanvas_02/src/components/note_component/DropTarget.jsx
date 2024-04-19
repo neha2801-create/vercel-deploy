@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import { useDrop } from "react-dnd";
 import DraggableBox from "./DraggableBox";
-import { Box, Stack } from "@mui/material";
-import { Space } from "react-zoomable-ui";
+import { Stack, Typography } from "@mui/material";
+import { useParams } from "react-router-dom";
 
-const DropTarget = ({ children }) => {
+const DropTarget = ({ children, id, spaceNumber, canvasName }) => {
+
+    id = useParams();
+    console.log("LOL",id);
+
     const [{ isOver }, drop] = useDrop({
         accept: "box",
         drop: (item, monitor) => {
@@ -32,8 +36,10 @@ const DropTarget = ({ children }) => {
             )
         );
     };
+
     // function to add new note card
-    const addNoteCard = (e) => {
+    const addNoteCard = async (e) => {
+        e.preventDefault(); // Prevent default behavior
         console.log("Adding new note card");
         const newId = noteCards.length + 1;
 
@@ -43,13 +49,46 @@ const DropTarget = ({ children }) => {
         console.log("left:", left);
         console.log("top:", top);
 
-        // // need to add padding when adding new note card
-        // const left = Math.floor(Math.random() * (window.innerWidth - 300));
-        // const top = Math.floor(Math.random() * (window.innerHeight - 300));
+        const noteData = {
+            // notesBody: "New Note",
+            posX: e.clientX,  // Adjust according to your coordinate system
+            posY: e.clientY,
+            height: 100,           // Default height
+            width: 200,            // Default width
+            pinned: false,         // Default pinned status
+            color: '#FFD700'       // Default color
+        };
+        console.log("Space Number", spaceNumber);
+        console.log("ID", id);
+
+        try {
+            const response = await fetch(`http://127.0.0.1:8000/notes/create/${id.id}/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(noteData),
+                credentials: 'include',  // Necessary if you're managing sessions
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                console.log('Note created:', data);
+            } else {
+                console.error('Failed to create note:', response.status);
+            }
+        } catch (error) {
+            console.error('Error creating note:', error);
+        }
+
+
         setNoteCards((prevNoteCards) => [
             ...prevNoteCards,
             { id: newId, left, top },
         ]);
+
+        // set focus on new note card
+        setFocusedNoteId(newId);
     };
 
     // function to delete note card
@@ -62,18 +101,23 @@ const DropTarget = ({ children }) => {
 
     // function to set focus on note card
     const [focusedNoteId, setFocusedNoteId] = useState(null);
-    const handleFocus = (id) => {
+    const handleFocus = (e, id) => {
+        e.preventDefault(); // Prevent default behavior
         console.log("Setting focus on note with id: ", id);
         setFocusedNoteId(id);
     };
 
+    // fun useeffect: for retrieving the notes list
+    // {
+    //     data
+            // after retrieve, map to draggable boxnpm
+    // }
+
+
+
     return (
-        // <Space>
         <Stack
-            // height={"940px"}
-            // width={"940px"}
-            padding={"20px"}
-            border={"1px dashed red"}
+            // padding={"20px"}
             justifyContent={"center"}
             alignItems={"center"}
             direction={"column"}
@@ -82,13 +126,9 @@ const DropTarget = ({ children }) => {
                 onDoubleClick={(e) => addNoteCard(e)}
                 ref={drop}
                 style={{
-                    borderRadius: "10px",
-                    // position: "fixed",
-                    // margin: "20px",
-                    // aspectRatio: "16/9",
-                    height: "calc(100vh - 40px)",
-                    width: "calc(99vw - 40px)",
-                    // backgroundColor: "transparent",
+                    // borderRadius: "10px",
+                    height: "100vh",
+                    width: "100vw",
                     backgroundColor: "#D9D9D9",
                 }}
             >
@@ -100,15 +140,28 @@ const DropTarget = ({ children }) => {
                         top={noteCard.top}
                         moveBox={moveBox}
                         zIndex={focusedNoteId === noteCard.id ? 1000 : 1}
-                        onClick={() => handleFocus(noteCard.id)}
+                        onClick={(e) => handleFocus(e, noteCard.id)}
                         handleNoteDelete={() => deleteNoteCard(noteCard.id)}
                         handleAddNewNote={addNoteCard}
                     />
                 ))}
                 {children}
             </div>
+            <Typography
+                variant="caption"
+                fontFamily={"poppins"}
+                style={{
+                    position: "relative",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    bottom: "0",
+                    padding: "20px",
+                    opacity: 0.5,
+                }}
+            >
+                {canvasName}
+            </Typography>
         </Stack>
-        // </Space>
     );
 };
 

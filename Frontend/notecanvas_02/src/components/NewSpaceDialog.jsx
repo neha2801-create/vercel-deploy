@@ -16,16 +16,26 @@ export default function NewSpaceDialog({ handleNewSpaceCreation }) {
     const [canvasName, setCanvasName] = React.useState("");
 
     const handleClickOpen = () => {
+        console.log("Click open");
         setOpen(true);
     };
 
     const handleClose = () => {
+        console.log("Cancel");
         setOpen(false);
+        setCanvasName("");
+        // handleNewSpaceCreation(canvasName);
+    };
+
+    const handleNewSpace = () => {
+        console.log("Create!");
+        setOpen(false);
+        setCanvasName("");
         handleNewSpaceCreation(canvasName);
     };
 
     return (
-        <React.Fragment>
+        <>
             <RoundedButton
                 onClick={handleClickOpen}
                 mt="0"
@@ -69,22 +79,22 @@ export default function NewSpaceDialog({ handleNewSpaceCreation }) {
                         placeholder={"New Canvas"}
                     />
 
-                    <Box display={"flex"} justifyContent={"right"}>
+                    <Stack direction="row" gap={1} justifyContent={"right"}>
                         <RoundedButton onClick={handleClose}>
                             Cancel
                         </RoundedButton>
-                        <Box width={"10px"}></Box>
+                        {/* <Box width={"10px"}>whwhwhwh</Box> */}
                         <RoundedButton
                             bgcolor="#FF5300"
                             color="black"
-                            type="submit"
+                            onClick={handleNewSpace}
                         >
-                            <Stack
+                            <Stack p={0}
                                 direction={"row"}
                                 spacing={1}
                                 alignItems={"center"}
                             >
-                                <Typography fontFamily={"poppins"}>
+                                <Typography fontFamily={"poppins"} >
                                     Create
                                 </Typography>
 
@@ -93,9 +103,9 @@ export default function NewSpaceDialog({ handleNewSpaceCreation }) {
                         </RoundedButton>
 
                         {/* <Button type="submit">Subscribe</Button> */}
-                    </Box>
+                    </Stack>
                 </DialogContent>
             </Dialog>
-        </React.Fragment>
+</>
     );
 }

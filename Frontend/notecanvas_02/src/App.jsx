@@ -10,6 +10,9 @@ import CanvasActivePage from "./pages/CanvasActivePage";
 import CanvasPageActiveTwo from "./pages/CanvasPageActiveTwo";
 import Dashboard from "./pages/Dashboard";
 
+import { createTheme, ThemeProvider } from "@mui/material";
+import { getTheme } from "./Theme";
+
 const router = createBrowserRouter([
     {
         path: "/",
@@ -21,13 +24,22 @@ const router = createBrowserRouter([
         element: <Dashboard />,
     },
     {
-        path: "/canvas",
+        path: "/canvas/:id", // Dynamic route to handle individual canvases
         element: (
             <DndProvider backend={HTML5Backend}>
                 <CanvasActivePage />
             </DndProvider>
         ),
     },
+
+    // {
+    //     path: "/canvas",
+    //     element: (
+    //         <DndProvider backend={HTML5Backend}>
+    //             <CanvasActivePage />
+    //         </DndProvider>
+    //     ),
+    // },
     {
         path: "/payground",
         element: <Playground />,
@@ -35,14 +47,25 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-    // return <RouterProvider router={router} />;
+
+    const [themeName, setThemeName] = useState("light");
+
+    const toggleTheme = () => {
+        setThemeName((prevThemeName) =>
+            prevThemeName === "light" ? "dark" : "light"
+        );
+    };
+
+    const theme = getTheme(themeName);
+
+    return <RouterProvider router={router} />;
     // return (
     //     <DndProvider backend={HTML5Backend}>
     //         <CanvasActivePage />
     //     </DndProvider>
     // );
     // return <CanvasPage />;
-    return <Dashboard />;
+    // return <Dashboard />;
 }
 
 export default App;
