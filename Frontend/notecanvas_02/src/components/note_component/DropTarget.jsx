@@ -71,7 +71,7 @@ const DropTarget = ({ children, spaceNumber }) => {
 
     return (
         <Stack
-            padding={"20px"}
+            // padding={"20px"}
             justifyContent={"center"}
             alignItems={"center"}
             direction={"column"}
@@ -81,8 +81,10 @@ const DropTarget = ({ children, spaceNumber }) => {
                 ref={drop}
                 style={{
                     borderRadius: "10px",
-                    height: "calc(100vh - 40px)",
-                    width: "calc(99vw - 40px)",
+                    // height: "100%",
+                    // width: "100%",
+                    height: "100vh",
+                    width: "100vw",
                     backgroundColor: "#D9D9D9",
                 }}
             >
@@ -101,20 +103,6 @@ const DropTarget = ({ children, spaceNumber }) => {
                 ))}
                 {children}
             </div>
-            <Typography
-                variant="caption"
-                fontFamily={"poppins"}
-                style={{
-                    position: "relative",
-                    left: "50%",
-                    transform: "translateX(-50%)",
-                    bottom: "0",
-                    padding: "20px",
-                    opacity: 0.5,
-                }}
-            >
-                Space {spaceNumber}
-            </Typography>
         </Stack>
     );
 };

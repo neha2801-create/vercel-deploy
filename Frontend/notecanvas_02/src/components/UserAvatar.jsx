@@ -1,12 +1,19 @@
 import React from "react";
-import { Avatar, AvatarGroup, Menu, MenuItem, Stack } from "@mui/material";
+import { Avatar, AvatarGroup, Box, Menu, MenuItem, Stack } from "@mui/material";
 import TuneRounded from "@mui/icons-material/TuneRounded";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import { useTheme } from "@mui/material";
+import RoundedButton from "./RoundedButton";
+import PeopleIcon from "@mui/icons-material/People";
 
 // todo: break this component into sub-components. compartmentalize!!!
 
-const UserAvatar = () => {
+const UserAvatar = ({ onlineUsersList, shareButtonClick, addedUsersClick }) => {
+    const theme = useTheme();
+
+    const onlineUsers = onlineUsersList;
+
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -35,13 +42,15 @@ const UserAvatar = () => {
         <Stack
             direction={"row-reverse"}
             alignItems={"center"}
-            gap={2}
-            style={{
-                // border: "1px red dashed",
+            gap={1}
+            p={1}
+            sx={{
                 zIndex: 100000,
                 position: "fixed",
                 top: "50px",
+                borderRadius: "50px",
                 right: "50px",
+                transition: "all 0.2s",
             }}
         >
             <Avatar
@@ -110,25 +119,40 @@ const UserAvatar = () => {
                     </Stack>
                 </MenuItem>
             </Menu>
-            <AvatarGroup
-                max={3}
-                sx={{
-                    "& .MuiAvatar-root": {
-                        height: 50,
-                        width: 50,
-                        borderRadius: "50%",
-                        color: "#ffffff50",
-                        backgroundColor: "#2C2C2C",
-                        border: "1px #3F3F3F solid",
-                    },
-                }}
-            >
-                <Avatar />
-                <Avatar />
-                <Avatar />
-                <Avatar />
-                <Avatar />
-            </AvatarGroup>
+
+            {onlineUsers.length > 0 ? (
+                <AvatarGroup
+                    onClick={addedUsersClick}
+                    max={4}
+                    sx={{
+                        "& .MuiAvatar-root": {
+                            height: 50,
+                            width: 50,
+                            borderRadius: "50%",
+                            color: "#ffffff50",
+                            backgroundColor: "#2C2C2C",
+                            border: "1px #3F3F3F solid",
+                        },
+                    }}
+                >
+                    {onlineUsers.map((user) => (
+                        <Avatar key={user.id} />
+                    ))}
+                </AvatarGroup>
+            ) : (
+                <Box mr={2}>
+                    <RoundedButton
+                        mt={0}
+                        borderRadius="30px"
+                        variant="text"
+                        onClick={shareButtonClick}
+                    >
+                        Share
+                        <Box width={10}></Box>
+                        <PeopleIcon />
+                    </RoundedButton>
+                </Box>
+            )}
         </Stack>
     );
 };

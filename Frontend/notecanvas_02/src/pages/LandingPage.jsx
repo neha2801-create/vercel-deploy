@@ -8,6 +8,7 @@ import {
     Button,
     FormControl,
     TextField,
+    useTheme,
 } from "@mui/material";
 import LogoOrange from "../assets/logo.svg";
 import OrangeBlob from "../assets/blob_2.svg";
@@ -25,7 +26,12 @@ const WrapperStyle = {
     // border: "1px dashed red",
     width: "85vw",
     margin: "0 auto",
-    paddingTop: "100px",
+    height: "100vh",
+    // paddingTop: "100px",
+    display: "flex",
+    flexDirection: "row",
+    // justifyContent: "center",
+    alignItems: "center",
 };
 const BlobBG = {
     backgroundImage: `url(${OrangeLines})`,
@@ -41,6 +47,8 @@ const BlobBG = {
 
 const LandingPage = () => {
     const [showSignUpForm, setShowSignUpForm] = useState(false);
+
+    const theme = useTheme();
 
     return (
         <>
@@ -70,13 +78,17 @@ const LandingPage = () => {
                                 />
                                 <Typography
                                     fontSize={30}
-                                    fontFamily={"poppins"}
                                     mt={2}
                                     fontWeight={500}
                                 >
                                     NoteCanvas
                                 </Typography>
-                                <p style={{ width: "400px", opacity: 0.7 }}>
+                                <p
+                                    style={{
+                                        width: "400px",
+                                        color: theme.palette.text.secondary,
+                                    }}
+                                >
                                     Think visually, organize intuitively.
                                     NoteCanvas empowers you to build your
                                     thoughts and ideas on a flexible canvas,
@@ -88,10 +100,10 @@ const LandingPage = () => {
                                 borderRadius="0 40px 40px 40px"
                                 minHeight={"350px"}
                                 padding="40px 40px 30px 40px"
+                                // border="1px 1E1E1E80 solid"
                             >
                                 <Typography
                                     fontSize={20}
-                                    fontFamily={"poppins"}
                                     // mt={2}
                                     fontWeight={500}
                                 >
@@ -128,16 +140,11 @@ const LandingPage = () => {
                             padding="40px 40px 30px 40px"
                             borderRadius="40px 40px 0 40px"
                         >
-                            <Typography
-                                fontSize={20}
-                                fontFamily={"poppins"}
-                                fontWeight={500}
-                            >
+                            <Typography fontSize={20} fontWeight={500}>
                                 Status
                             </Typography>
                             <Typography
                                 fontSize={80}
-                                fontFamily={"poppins"}
                                 // mt={2}
                                 fontWeight={600}
                             >
@@ -148,35 +155,35 @@ const LandingPage = () => {
                                     <Typography
                                         mt={3}
                                         fontWeight={500}
-                                        fontFamily={"poppins"}
+                                        color={theme.palette.text.secondary}
                                     >
                                         Currently working on
                                     </Typography>
                                     <Typography
-                                        fontFamily={"poppins"}
                                         mt={2}
+                                        ml={2}
                                         lineHeight={"200%"}
                                     >
-                                        User login & account <br />
-                                        Note object <br />
-                                        Canvas UI
+                                        Final refinements <br />
+                                        Testing <br />
+                                        Stable 1, Deployement <br />
                                     </Typography>
                                 </Box>
                                 <Box>
                                     <Typography
                                         mt={3}
                                         fontWeight={500}
-                                        fontFamily={"poppins"}
+                                        color={theme.palette.text.secondary}
                                     >
-                                        Upcoming
+                                        Next up
                                     </Typography>
                                     <Typography
-                                        fontFamily={"poppins"}
                                         mt={2}
+                                        ml={2}
                                         lineHeight={"200%"}
                                     >
-                                        Accounts/Preferences <br />
-                                        Notes customization <br />
+                                        Overall optimizations <br />
+                                        Better canvas layout <br />
                                     </Typography>
                                 </Box>
                             </Stack>
@@ -188,7 +195,6 @@ const LandingPage = () => {
                         padding="40px 40px 30px 40px"
                         borderRadius="40px 40px 40px 0"
                         bgcolor="#1E1E1E"
-                        border="1px 1E1E1E solid"
                         color="#fff"
                         alignItems="center"
                         justifyContent={"center"}
@@ -229,10 +235,7 @@ const LandingPage = () => {
                             alignItems={"center"}
                             mt={3}
                         >
-                            <Typography
-                                fontFamily={"poppins"}
-                                display={"inline"}
-                            >
+                            <Typography display={"inline"}>
                                 {showSignUpForm ? (
                                     <>Existing user?</>
                                 ) : (

@@ -29,48 +29,7 @@ const Dashboard = () => {
     };
 
     // Lists of spaces and online users (rn static but will be fetched from backend) - useEffect
-    const [spacesList, setSpacesList] = React.useState([
-        // {
-        //     id: 1,
-        //     title: "Web Dev Project Brainstorming",
-        //     timestamp: "4:42 PM 12/12/2021",
-        // },
-        // {
-        //     id: 2,
-        //     title: "Sequences and Series",
-        //     timestamp: "4:42 PM 12/12/2021",
-        // },
-        // {
-        //     id: 3,
-        //     title: "Design Inspo",
-        //     timestamp: "4:42 PM 12/12/2021",
-        // },
-        // {
-        //     id: 4,
-        //     title: "Overlapping Squares and Circles",
-        //     timestamp: "4:42 PM 12/12/2021",
-        // },
-        // {
-        //     id: 5,
-        //     title: "Food Blog Ideas",
-        //     timestamp: "4:42 PM 12/12/2021",
-        // },
-        // {
-        //     id: 6,
-        //     title: "Tentative Component List",
-        //     timestamp: "4:42 PM 12/12/2021",
-        // },
-        // {
-        //     id: 7,
-        //     title: "Sleep Walking Ideas",
-        //     timestamp: "4:42 PM 12/12/2021",
-        // },
-        // {
-        //     id: 8,
-        //     title: "Space 8",
-        //     timestamp: "4:42 PM 12/12/2021",
-        // },
-    ]);
+    const [spacesList, setSpacesList] = React.useState([]);
 
     const [onlineUsers, setOnlineUsers] = React.useState([
         {
@@ -135,14 +94,6 @@ const Dashboard = () => {
         } else {
             handleSortByName();
         }
-
-        // handleSortByTime();
-        // handleSortByName();
-
-        // convert form data to json
-        // const data = {
-        //     canvasName: canvasName,
-        // };
 
         console.log("New Space Added: ", newSpace);
     };

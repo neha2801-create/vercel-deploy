@@ -3,12 +3,12 @@ import React from "react";
 import LogoOrange from "../assets/logo.svg";
 
 const LandingPageCard = ({
-    bgcolor = "#00000025",
+    bgcolor = "#00000020",
     borderRadius = "40px",
     padding = "40px",
     flex = 1,
     children,
-    border = "1px #000 solid",
+    border = "1px #00000040 solid",
     boxShadow = "0 0 0 1px 2px #000",
     alignItems = "start",
     justifyContent,
@@ -18,7 +18,7 @@ const LandingPageCard = ({
 }) => {
     return (
         <Stack
-            sx={{ backdropFilter: "blur(50px)" }}
+            sx={{ backdropFilter: "blur(30px)" }}
             bgcolor={bgcolor}
             color={color}
             padding={padding}

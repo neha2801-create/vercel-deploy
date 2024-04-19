@@ -9,6 +9,29 @@ import DropTarget from "../components/note_component/DropTarget";
 import { Box, Typography } from "@mui/material";
 
 const CanvasActivePage = () => {
+    const [onlineUsers, setOnlineUsers] = React.useState([
+        // {
+        //     id: 1,
+        //     name: "Michael Scott",
+        // },
+        // {
+        //     id: 2,
+        //     name: "Dwight Schrute",
+        // },
+        // {
+        //     id: 3,
+        //     name: "Jim Halpert",
+        // },
+        // {
+        //     id: 4,
+        //     name: "Pam Beesly",
+        // },
+        // {
+        //     id: 5,
+        //     name: "Ryan Howard",
+        // },
+    ]);
+
     const lastSpaceRef = React.useRef(null);
     const [spacesList, setSpacesList] = React.useState([]);
     const [lastSpaceId, setLastSpaceId] = React.useState(0);
@@ -20,78 +43,56 @@ const CanvasActivePage = () => {
     };
 
     React.useEffect(() => {
-        handleAddNewSpace();
+        // handleAddNewSpace();
     }, []);
 
     useEffect(() => {
         lastSpaceRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [spacesList]);
 
+    const handleCollaboratorsClick = () => {
+        console.log("Collaborators clicked!");
+    };
+
     return (
         <>
-            <UserAvatar />
+            <UserAvatar
+                onlineUsersList={onlineUsers}
+                addedUsersClick={handleCollaboratorsClick}
+                shareButtonClick={handleCollaboratorsClick}
+            />
             <BottomRightUsersButton />
 
             <div
                 style={{
-                    display: "flex",
                     flexDirection: "row",
                     flexWrap: "wrap",
                     scrollBehavior: "smooth",
                 }}
             >
-                {spacesList.length > 0 ? (
-                    spacesList.map((space, index) => (
-                        <DropTarget
-                            key={space.id}
-                            spaceNumber={index + 1}
-                            addNewSpaceButton={handleAddNewSpace}
-                            ref={
-                                index === spacesList.length - 1
-                                    ? lastSpaceRef
-                                    : null
-                            }
-                        >
-                            <Typography
-                                variant="caption"
-                                fontFamily={"poppins"}
-                                style={{
-                                    position: "relative",
-                                    left: "50%",
-                                    transform: "translateX(-50%)",
-                                    bottom: "0",
-                                    padding: "20px",
-                                    opacity: 0.5,
-                                }}
-                            >
-                                Space {index + 1}
-                            </Typography>
-                        </DropTarget>
-                    ))
-                ) : (
-                    <Box
-                        position={"absolute"}
-                        top={"40%"}
-                        left={"50%"}
-                        sx={{
-                            transform: "translate(-50%, -50%)",
+                <DropTarget
+                // key={space.id}
+                // spaceNumber={index + 1}
+                // addNewSpaceButton={handleAddNewSpace}
+                // ref={index === spacesList.length - 1 ? lastSpaceRef : null}
+                >
+                    {/* <Typography
+                        variant="caption"
+                        fontFamily={"poppins"}
+                        style={{
+                            position: "relative",
+                            left: "50%",
+                            transform: "translateX(-50%)",
+                            bottom: "0",
+                            padding: "20px",
+                            opacity: 0.5,
                         }}
-                        padding={"20px"}
                     >
-                        <Typography
-                            variant="h1"
-                            fontFamily={"poppins"}
-                            style={{
-                                color: "white",
-                                opacity: 0.5,
-                            }}
-                        >
-                            Create some spaces to get started!
-                        </Typography>
-                    </Box>
-                )}
+                        Space
+                    </Typography> */}
+                </DropTarget>
 
-                <AddNewSpaceButton onClick={handleAddNewSpace} />
+                {/* <AddNewSpaceButton onClick={handleAddNewSpace} /> */}
             </div>
         </>
     );

@@ -14,6 +14,7 @@ const RoundedButton = ({
     onClick,
     borderRadius = "11px",
     type = "button",
+    hoverBGColor = "#00000080",
 }) => {
     return (
         <Button
@@ -25,6 +26,9 @@ const RoundedButton = ({
             sx={{
                 ":disabled": {
                     color: "#ffffff30",
+                },
+                ":hover": {
+                    backgroundColor: hoverBGColor,
                 },
                 padding: "10px 20px",
                 mt: mt,
