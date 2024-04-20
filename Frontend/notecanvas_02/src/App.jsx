@@ -10,6 +10,7 @@ import CanvasActivePage from "./pages/CanvasActivePage";
 import CanvasPageActiveTwo from "./pages/CanvasPageActiveTwo";
 import Dashboard from "./pages/Dashboard";
 import Preferences from "./pages/Prefrence";
+import ForgetPassword from "./pages/ForgetPassword";
 
 const router = createBrowserRouter([
     {
@@ -44,7 +45,7 @@ function App() {
     // );
     // return <CanvasPage />;
     // return <Dashboard />;
-    return <Preferences/>;
+    return <ForgetPassword/>;
 }
 
 export default App;
