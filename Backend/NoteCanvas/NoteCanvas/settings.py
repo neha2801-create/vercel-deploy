@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'notes',
     'canvas',
+    '.vercel.app',
 ]
 
 MIDDLEWARE = [
