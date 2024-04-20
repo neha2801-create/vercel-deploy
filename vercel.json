@@ -1,8 +1,14 @@
 {
   "builds": [
     {
-      "src": "/Backend/NoteCanvas/manage.py",
+      "src": "/Backend/NoteCanvas/**/*.py",
       "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/Backend/NoteCanvas/NoteCanvas/wsgi.py"
     }
   ]
 }
